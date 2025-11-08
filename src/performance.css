@@ -1,0 +1,289 @@
+/* Performance Optimizations CSS */
+
+/* Enable GPU acceleration for animations */
+.place-card,
+.food-card,
+.vehicle-card,
+.btn,
+.hero-btn,
+.order-btn,
+.modal-overlay,
+.modal-content {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Optimize transitions */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Prevent layout shift from images */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optimize button clicks - prevent double tap delay on mobile */
+button,
+a,
+.place-card,
+.food-card,
+.vehicle-card {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Fast click feedback with transform instead of box-shadow */
+.btn:active,
+.hero-btn:active,
+.order-btn:active,
+button:active {
+  transform: scale(0.97) translateZ(0);
+  transition-duration: 50ms;
+}
+
+/* Optimize hover states - use transform instead of expensive properties */
+.place-card:hover,
+.food-card:hover,
+.vehicle-card:hover {
+  transform: translateY(-4px) translateZ(0);
+}
+
+/* Remove hover effects on touch devices to prevent stuck hover states */
+@media (hover: none) {
+  .place-card:hover,
+  .food-card:hover,
+  .vehicle-card:hover {
+    transform: none;
+  }
+}
+
+/* Optimize modal animations */
+.modal-overlay {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px) translateZ(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) translateZ(0);
+    opacity: 1;
+  }
+}
+
+/* Reduce paint areas - contain paint */
+.place-card,
+.food-card,
+.vehicle-card,
+.modal-content {
+  contain: layout style paint;
+}
+
+/* Optimize scrolling performance */
+.bookings-list,
+.foods-grid,
+.grid {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Prevent text selection lag */
+.place-card,
+.food-card,
+.vehicle-card,
+.booking-item {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection in specific areas */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+input,
+textarea {
+  user-select: text;
+}
+
+/* Optimize image loading */
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+
+/* Reduce repaints on focus */
+input:focus,
+textarea:focus,
+button:focus {
+  outline-offset: 2px;
+}
+
+/* Hardware acceleration for fixed elements */
+.navbar {
+  position: fixed;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize grid layouts */
+.grid,
+.foods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* Prevent content jumping during load */
+.place-image,
+.food-image {
+  position: relative;
+  width: 100%;
+  padding-bottom: 75%; /* 4:3 aspect ratio */
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.place-image img,
+.food-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Smooth loading skeleton */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optimize button disabled state */
+button:disabled,
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Prevent layout shift from fonts */
+body {
+  font-display: swap;
+}
+
+/* Optimize list rendering */
+.booking-list,
+.admin-table {
+  contain: content;
+}
+
+/* Fast transitions for modals */
+.modal-overlay.closing {
+  animation: fadeOut 0.2s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Reduce composite layers */
+.hero-background-grid {
+  will-change: auto;
+}
+
+/* Optimize table performance */
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+/* Contain layout changes */
+.container {
+  contain: layout;
+}
+
+/* Optimize form inputs */
+input,
+textarea,
+select {
+  touch-action: manipulation;
+}
+
+/* Prevent flicker on webkit */
+* {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  /* Reduce animations on mobile for better performance */
+  .place-card:hover,
+  .food-card:hover,
+  .vehicle-card:hover {
+    transform: none;
+  }
+  
+  /* Simplify transitions */
+  * {
+    transition-duration: 0.2s !important;
+  }
+}
+
+/* Prevent button tap delay */
+a,
+button,
+input[type="button"],
+input[type="submit"],
+label {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
