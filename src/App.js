@@ -4,6 +4,7 @@ import './App.css';
 import './styles.css';
 import './performance.css';
 import NavBar from './components/NavBar';
+import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Destinations from './pages/Destinations';
 import PlacePage from './pages/PlacePage';
@@ -24,12 +25,36 @@ function App(){
             <Route path="/" element={<Home/>} />
             <Route path="/destinations" element={<Destinations/>} />
             <Route path="/place/:id" element={<PlacePage/>} />
-            <Route path="/book" element={<BookNow/>} />
-            <Route path="/foods" element={<Foods/>} />
-            <Route path="/hire" element={<Hire/>} />
             <Route path="/login" element={<Login/>} />
-            <Route path="/bookings" element={<BookingsView/>} />
-            <Route path="/admin" element={<Admin/>} />
+            
+            {/* Protected Routes - Require Login */}
+            <Route path="/foods" element={
+              <ProtectedRoute>
+                <Foods/>
+              </ProtectedRoute>
+            } />
+            <Route path="/hire" element={
+              <ProtectedRoute>
+                <Hire/>
+              </ProtectedRoute>
+            } />
+            <Route path="/book" element={
+              <ProtectedRoute>
+                <BookNow/>
+              </ProtectedRoute>
+            } />
+            <Route path="/bookings" element={
+              <ProtectedRoute>
+                <BookingsView/>
+              </ProtectedRoute>
+            } />
+            
+            {/* Admin Only Route */}
+            <Route path="/admin" element={
+              <ProtectedRoute requireAdmin={true}>
+                <Admin/>
+              </ProtectedRoute>
+            } />
           </Routes>
         </main>
       </div>

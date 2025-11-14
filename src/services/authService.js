@@ -210,12 +210,23 @@ class AuthService {
 
   // Check if user is authenticated
   isAuthenticated() {
-    return !!this.user && !!getAuthToken();
+    const token = getAuthToken();
+    if (!token) {
+      return false;
+    }
+
+    // Validate token hasn't expired
+    const currentUser = this.getCurrentUser();
+    return !!currentUser;
   }
 
   // Check if user is admin
   isAdmin() {
-    return this.user?.role === 'admin';
+    if (!this.isAuthenticated()) {
+      return false;
+    }
+    const currentUser = this.getCurrentUser();
+    return currentUser?.role === 'admin';
   }
 
   // Get user role
