@@ -53,7 +53,6 @@ export default function Hire(){
 
   const handleServiceSelect = useCallback((service) => {
     if (selectedVehicle) {
-      alert(`Opening ${service.name} to book ${selectedVehicle.name}...`);
       window.open(service.url, '_blank');
       setSelectedVehicle(null);
     }

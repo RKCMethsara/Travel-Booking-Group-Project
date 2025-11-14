@@ -92,7 +92,7 @@ export default function Admin() {
       // Reload data
       await loadDashboardData();
       
-      alert('Admin user created successfully!');
+      setError('');
       setActiveTab('users');
     } catch (error) {
       console.error('Error creating admin:', error);
@@ -113,10 +113,10 @@ export default function Admin() {
     try {
       await adminAPI.updateUserRole(uid, newRole);
       await loadDashboardData();
-      alert(`User role updated to ${newRole}`);
+      setError('');
     } catch (error) {
       console.error('Error updating user role:', error);
-      alert('Failed to update user role');
+      setError('Failed to update user role');
     }
   };
 
@@ -124,10 +124,10 @@ export default function Admin() {
     try {
       await adminAPI.updateUserStatus(uid, isActive);
       await loadDashboardData();
-      alert(`User ${isActive ? 'activated' : 'deactivated'} successfully`);
+      setError('');
     } catch (error) {
       console.error('Error updating user status:', error);
-      alert('Failed to update user status');
+      setError('Failed to update user status');
     }
   };
 
@@ -135,10 +135,10 @@ export default function Admin() {
     try {
       await adminAPI.updateBookingStatus(bookingId, status);
       await loadDashboardData();
-      alert(`Booking status updated to ${status}`);
+      setError('');
     } catch (error) {
       console.error('Error updating booking status:', error);
-      alert('Failed to update booking status');
+      setError('Failed to update booking status');
     }
   };
 
@@ -147,10 +147,10 @@ export default function Admin() {
       try {
         await adminAPI.deleteBooking(bookingId);
         await loadDashboardData();
-        alert('Booking deleted successfully');
+        setError('');
       } catch (error) {
         console.error('Error deleting booking:', error);
-        alert('Failed to delete booking');
+        setError('Failed to delete booking');
       }
     }
   };

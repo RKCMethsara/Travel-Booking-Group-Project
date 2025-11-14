@@ -87,7 +87,6 @@ export default function Foods(){
 
   const handleDeliverySelect = useCallback((service) => {
     if (selectedFood) {
-      alert(`Opening ${service.name} to order ${selectedFood.name}...`);
       window.open(service.url, '_blank');
       setSelectedFood(null);
     }
