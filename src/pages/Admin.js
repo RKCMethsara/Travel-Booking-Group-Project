@@ -63,6 +63,18 @@ export default function Admin() {
       return;
     }
 
+    // Validate password on frontend
+    if (newAdmin.password.length < 8) {
+      setError('Password must be at least 8 characters long');
+      return;
+    }
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/;
+    if (!passwordRegex.test(newAdmin.password)) {
+      setError('Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)');
+      return;
+    }
+
     try {
       setIsCreatingAdmin(true);
       setError('');
@@ -84,7 +96,14 @@ export default function Admin() {
       setActiveTab('users');
     } catch (error) {
       console.error('Error creating admin:', error);
-      setError(error.response?.data?.error || 'Failed to create admin user');
+      
+      // Show detailed error from backend
+      if (error.response?.data?.details) {
+        const errorMessages = error.response.data.details.map(err => err.msg).join(', ');
+        setError(errorMessages);
+      } else {
+        setError(error.response?.data?.error || 'Failed to create admin user');
+      }
     } finally {
       setIsCreatingAdmin(false);
     }
@@ -480,7 +499,16 @@ export default function Admin() {
                   required
                   minLength="8"
                 />
-                <small>At least 8 characters with uppercase, lowercase, numbers, and special characters</small>
+                <small style={{display: 'block', marginTop: '5px', color: '#666'}}>
+                  Must be at least 8 characters and include:
+                  <ul style={{marginTop: '5px', paddingLeft: '20px', fontSize: '0.85rem'}}>
+                    <li>One uppercase letter (A-Z)</li>
+                    <li>One lowercase letter (a-z)</li>
+                    <li>One number (0-9)</li>
+                    <li>One special character (@$!%*?&)</li>
+                  </ul>
+                  Example: Admin@2025
+                </small>
               </div>
 
               <button 
