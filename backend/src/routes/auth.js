@@ -206,6 +206,57 @@ router.post('/logout', verifyJWTToken, requireAuth, (req, res) => {
   });
 });
 
+// @route   POST /api/auth/reset-password
+// @desc    Send password reset email
+// @access  Public
+router.post('/reset-password', [
+  body('email')
+    .isEmail()
+    .normalizeEmail()
+    .withMessage('Valid email is required')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        error: 'Validation failed',
+        details: errors.array()
+      });
+    }
+
+    const { email } = req.body;
+
+    // Check if user exists
+    const existingUser = await userService.getUserByEmail(email);
+    if (!existingUser) {
+      // For security reasons, don't reveal if user exists or not
+      return res.json({
+        message: 'If an account exists with this email, a password reset link will be sent.'
+      });
+    }
+
+    // Generate password reset link using Firebase Admin
+    const { auth } = require('../config/firebase');
+    const resetLink = await auth.generatePasswordResetLink(email);
+
+    // In production, send this link via email service
+    // For now, we'll just return success (in real app, use SendGrid, AWS SES, etc.)
+    console.log('Password reset link for', email, ':', resetLink);
+
+    res.json({
+      message: 'If an account exists with this email, a password reset link will be sent.',
+      // In development, include the link (REMOVE IN PRODUCTION)
+      ...(process.env.NODE_ENV === 'development' && { resetLink })
+    });
+
+  } catch (error) {
+    console.error('Reset password error:', error);
+    res.status(500).json({
+      error: 'Failed to process password reset request'
+    });
+  }
+});
+
 // @route   GET /api/auth/verify-token
 // @desc    Verify if token is valid and return user role
 // @access  Private

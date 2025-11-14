@@ -226,7 +226,7 @@ class AuthService {
   // Reset password
   async resetPassword(email) {
     try {
-      const response = await fetch(`${authAPI.login}/reset-password`, {
+      const response = await fetch(authAPI.resetPassword, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

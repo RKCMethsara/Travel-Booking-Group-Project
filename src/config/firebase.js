@@ -10,7 +10,8 @@ export const authAPI = {
   register: `${API_URL}/auth/register`,
   logout: `${API_URL}/auth/logout`,
   profile: `${API_URL}/auth/profile`,
-  refresh: `${API_URL}/auth/refresh`
+  refresh: `${API_URL}/auth/refresh`,
+  resetPassword: `${API_URL}/auth/reset-password`
 };
 
 // Database API endpoints  
