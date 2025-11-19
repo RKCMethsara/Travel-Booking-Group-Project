@@ -2,23 +2,23 @@
 // No direct Firebase client SDK needed
 
 // API base URL
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 // Auth API endpoints
 export const authAPI = {
-  login: `${API_URL}/auth/login`,
-  register: `${API_URL}/auth/register`,
-  logout: `${API_URL}/auth/logout`,
-  profile: `${API_URL}/auth/profile`,
-  refresh: `${API_URL}/auth/refresh`,
-  resetPassword: `${API_URL}/auth/reset-password`
+  login: `${API_URL}/api/auth/login`,
+  register: `${API_URL}/api/auth/register`,
+  logout: `${API_URL}/api/auth/logout`,
+  profile: `${API_URL}/api/auth/profile`,
+  refresh: `${API_URL}/api/auth/refresh`,
+  resetPassword: `${API_URL}/api/auth/reset-password`
 };
 
 // Database API endpoints  
 export const dbAPI = {
-  places: `${API_URL}/places`,
-  bookings: `${API_URL}/bookings`,
-  users: `${API_URL}/users`
+  places: `${API_URL}/api/places`,
+  bookings: `${API_URL}/api/bookings`,
+  users: `${API_URL}/api/users`
 };
 
 // Helper function to get auth token from localStorage
