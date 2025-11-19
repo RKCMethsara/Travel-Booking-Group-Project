@@ -215,7 +215,7 @@ export default function Login(){
       <div className="login-container">
         <div className="login-header">
           <div className="login-icon">🏝️</div>
-          <h1>Welcome to Sri Lanka Tourism</h1>
+          <h1>Welcome to DREAM CYLON</h1>
           <p className="login-subtitle">
             {isLogin ? 'Sign in to manage your bookings' : 'Create an account to get started'}
           </p>

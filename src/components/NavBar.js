@@ -43,7 +43,17 @@ const NavBar = memo(() => {
 
   return (
     <nav className="navbar responsive-navbar">
-      <div className="nav-brand"><Link to="/">Sri Lanka Tours</Link></div>
+      <div className="nav-brand">
+        <Link to="/" className="nav-brand-link">
+          <img 
+            src="/images/website project3.png" 
+            alt="DREAM CYLON" 
+            className="nav-logo"
+            onError={(e) => { e.target.style.display = 'none'; }}
+          />
+          <span className="nav-brand-text">DREAM CYLON</span>
+        </Link>
+      </div>
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/destinations">Destinations</Link></li>

@@ -36,7 +36,9 @@ export default function Home() {
         </div>
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <div className="hero-badge">🏝️ Sri Lanka Tourism</div>
+                  <div className="hero-badge">
+          🏝️ DREAM CYLON
+        </div>
           <h1 className="hero-title">
             Explore Sri Lanka
             <span className="hero-subtitle-accent">Pearl of the Indian Ocean</span>

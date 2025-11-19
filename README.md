@@ -1,4 +1,4 @@
-# 🏝️ Sri Lanka Tourism Website - Enhanced Security Edition
+# 🏝️ DREAM CYLON - Enhanced Security Edition
 
 ## 🎉 Version 2.0 - Production Ready with Enterprise Security
 
@@ -44,7 +44,7 @@ Publishing to GitHub
 ```powershell
 git init
 git add .
-git commit -m "Initial frontend for Sri Lanka Tours"
+git commit -m "Initial frontend for DREAM SYLON"
 git branch -M main
 git remote add origin https://github.com/<your-username>/<repo>.git
 git push -u origin main

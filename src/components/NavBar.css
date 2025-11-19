@@ -22,10 +22,38 @@
   font-weight: bold;
 }
 
+.navbar .nav-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.navbar .nav-brand-link:hover {
+  opacity: 0.85;
+}
+
+.navbar .nav-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.navbar .nav-brand-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
 .navbar .nav-links {
   display: flex;
   list-style: none;
   gap: 15px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .navbar .nav-links li a {
