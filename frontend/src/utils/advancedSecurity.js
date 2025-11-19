@@ -257,7 +257,7 @@ export const validateEmailSecure = (email) => {
     return false;
   }
   
-  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   
   if (!emailRegex.test(email)) return false;
   
@@ -282,7 +282,7 @@ export const validateEmailSecure = (email) => {
 // Phone validation with international support
 export const validatePhoneSecure = (phone) => {
   // Remove common formatting
-  const cleaned = phone.replace(/[\s\-\(\)\.]/g, '');
+  const cleaned = phone.replace(/[\s\-().]/g, '');
   
   // Check for suspicious patterns
   if (/[^\d\+]/.test(cleaned)) return false;
@@ -300,7 +300,7 @@ export const validateNameSecure = (name) => {
   if (trimmed.length < 2 || trimmed.length > 100) return false;
   
   // Allow letters, spaces, hyphens, apostrophes, and unicode characters
-  const nameRegex = /^[\p{L}\s\-'\.]+$/u;
+  const nameRegex = /^[\p{L}\s\-'.]+$/u;
   if (!nameRegex.test(trimmed)) return false;
   
   // Prevent suspicious patterns
@@ -474,7 +474,7 @@ export const validateFileUpload = (file, allowedTypes = ['image/jpeg', 'image/pn
   
   // Check file name
   const fileName = file.name;
-  if (!/^[a-zA-Z0-9_\-\.]+$/.test(fileName)) {
+  if (!/^[a-zA-Z0-9_\-.]+$/.test(fileName)) {
     return { valid: false, error: 'Invalid file name' };
   }
   

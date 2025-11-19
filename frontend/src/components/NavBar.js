@@ -7,7 +7,6 @@ const NavBar = memo(() => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     // Subscribe to auth state changes

@@ -147,7 +147,7 @@ export const sanitizeBookingData = (booking) => {
   };
 };
 
-export default {
+const securityUtils = {
   sanitizeInput,
   validateEmail,
   validatePhone,
@@ -163,3 +163,5 @@ export default {
   isAdmin,
   sanitizeBookingData
 };
+
+export default securityUtils;
