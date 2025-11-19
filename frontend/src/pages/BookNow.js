@@ -22,6 +22,7 @@ export default function BookNow() {
   const [form, setForm] = useState({place: '', hotel: '', date: '', name: '', email: '', phone: ''});
   const [msg, setMsg] = useState('');
   const [msgType, setMsgType] = useState('');
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
