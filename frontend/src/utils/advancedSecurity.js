@@ -285,7 +285,7 @@ export const validatePhoneSecure = (phone) => {
   const cleaned = phone.replace(/[\s\-().]/g, '');
   
   // Check for suspicious patterns
-  if (/[^\d\+]/.test(cleaned)) return false;
+  if (/[^\d+]/.test(cleaned)) return false;
   
   // Validate international format
   const phoneRegex = /^\+?[1-9]\d{1,14}$/;
