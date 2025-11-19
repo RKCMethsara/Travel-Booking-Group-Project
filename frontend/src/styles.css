@@ -61,12 +61,6 @@ body{
   letter-spacing: -0.5px;
 }
 
-.nav-brand a::before{
-  content: "🌴";
-  font-size: 2rem;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-}
-
 .nav-brand a:hover{
   transform: translateY(-2px);
   filter: drop-shadow(0 4px 8px rgba(255,255,255,0.3));
