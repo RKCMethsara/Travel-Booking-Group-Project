@@ -45,7 +45,7 @@ const NavBar = memo(() => {
       <div className="nav-brand">
         <Link to="/" className="nav-brand-link">
           <img 
-            src="/images/website project3.png" 
+            src="/images/website%20project3.png" 
             alt="DREAM CYLON" 
             className="nav-logo"
             onError={(e) => { e.target.style.display = 'none'; }}
